@@ -1,0 +1,410 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--color-bg-page);
+}
+
+.scroll {
+  flex: 1;
+  min-height: 0;
+  height: 0;
+}
+
+/* ---------- 图片轮播 ---------- */
+.swiper-wrap {
+  position: relative;
+}
+
+.swiper {
+  width: 100%;
+  height: 750rpx;
+  background-color: var(--color-bg-hover);
+}
+
+.swiper-image {
+  width: 100%;
+  height: 750rpx;
+  display: block;
+}
+
+.counter {
+  position: absolute;
+  right: 32rpx;
+  bottom: 32rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  padding: 0 16rpx;
+  border-radius: 48rpx;
+  font-size: 22rpx;
+  color: var(--color-text-white);
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+/* ---------- 通用卡片 ---------- */
+.card {
+  margin: 24rpx 32rpx 0;
+  padding: 32rpx;
+  background-color: var(--color-bg-card);
+  border-radius: 16rpx;
+  box-shadow: var(--shadow-card);
+}
+
+/* ---------- 价格与标题 ---------- */
+.price-row {
+  display: flex;
+  align-items: baseline;
+}
+
+.price-symbol {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--color-price);
+}
+
+.price {
+  margin-left: 2rpx;
+  font-size: 60rpx;
+  font-weight: 700;
+  color: var(--color-price);
+  line-height: 1.1;
+}
+
+.original-price {
+  margin-left: 24rpx;
+  font-size: 24rpx;
+  color: var(--color-text-tertiary);
+  text-decoration: line-through;
+}
+
+.discount {
+  margin-left: auto;
+  flex-shrink: 0;
+  height: 40rpx;
+  line-height: 40rpx;
+  padding: 0 16rpx;
+  border-radius: 4rpx;
+  font-size: 22rpx;
+  color: var(--color-price);
+  background-color: var(--color-primary-bg);
+  white-space: nowrap;
+}
+
+.title {
+  display: block;
+  margin-top: 24rpx;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.3;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 24rpx;
+}
+
+.tag {
+  height: 44rpx;
+  line-height: 44rpx;
+  padding: 0 24rpx;
+  margin: 0 16rpx 8rpx 0;
+  border-radius: 4rpx;
+  font-size: 22rpx;
+  color: var(--color-tag-text);
+  background-color: var(--color-tag-bg);
+  white-space: nowrap;
+}
+
+.tag-accent {
+  color: var(--color-accent);
+  background-color: var(--color-accent-bg);
+}
+
+.meta-row {
+  display: flex;
+  align-items: center;
+  margin-top: 24rpx;
+  padding-top: 24rpx;
+  border-top: 1rpx solid var(--color-divider);
+}
+
+.meta-text {
+  font-size: 22rpx;
+  color: var(--color-text-tertiary);
+}
+
+.meta-gap {
+  margin-left: 32rpx;
+}
+
+/* ---------- 卖家卡片 ---------- */
+.seller-row {
+  display: flex;
+  align-items: center;
+}
+
+.seller-avatar {
+  flex-shrink: 0;
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 999rpx;
+  background-color: var(--color-bg-hover);
+}
+
+.seller-info {
+  flex: 1;
+  min-width: 0;
+  margin-left: 24rpx;
+}
+
+.seller-name {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.seller-meta {
+  display: block;
+  margin-top: 6rpx;
+  font-size: 22rpx;
+  color: var(--color-text-tertiary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.self-chip {
+  flex-shrink: 0;
+  height: 44rpx;
+  line-height: 44rpx;
+  padding: 0 24rpx;
+  margin-left: 24rpx;
+  border-radius: 48rpx;
+  font-size: 22rpx;
+  color: var(--color-accent);
+  background-color: var(--color-accent-bg);
+  white-space: nowrap;
+}
+
+/* ---------- 描述 ---------- */
+.section-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 24rpx;
+}
+
+.desc {
+  display: block;
+  font-size: 28rpx;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.desc-image {
+  width: 100%;
+  margin-top: 24rpx;
+  border-radius: 12rpx;
+  display: block;
+}
+
+/* ---------- 底部留白 ---------- */
+.spacer {
+  height: 48rpx;
+}
+
+/* ---------- 底部操作栏 ---------- */
+.footer {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 24rpx 32rpx;
+  padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
+  background-color: var(--color-bg-card);
+  box-shadow: var(--shadow-float);
+}
+
+.fav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 140rpx;
+  height: 96rpx;
+}
+
+.fav-btn:active {
+  opacity: 0.7;
+}
+
+.fav-icon {
+  font-size: 36rpx;
+  line-height: 1;
+}
+
+.fav-label {
+  margin-top: 4rpx;
+  font-size: 22rpx;
+  color: var(--color-text-tertiary);
+}
+
+.fav-label-active {
+  color: var(--color-primary);
+}
+
+.contact-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 96rpx;
+  margin-left: 24rpx;
+  background: var(--gradient-primary);
+  border-radius: 48rpx;
+}
+
+.contact-btn:active {
+  opacity: 0.9;
+  transform: scale(0.99);
+}
+
+.contact-text {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--color-text-white);
+  white-space: nowrap;
+}
+
+.contact-btn-disabled {
+  opacity: 0.6;
+}
+
+/* ---------- 联系方式弹窗 ---------- */
+.mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: flex-end;
+}
+
+.modal {
+  width: 100%;
+  padding: 48rpx 32rpx;
+  padding-bottom: calc(48rpx + env(safe-area-inset-bottom));
+  background-color: var(--color-bg-card);
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+}
+
+.modal-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+.modal-desc {
+  display: block;
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  color: var(--color-text-tertiary);
+  text-align: center;
+}
+
+.contact-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 32rpx;
+  padding: 32rpx;
+  background-color: var(--color-primary-bg);
+  border-radius: 12rpx;
+}
+
+.contact-value {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  word-break: break-all;
+  text-align: center;
+}
+
+.modal-actions {
+  display: flex;
+  align-items: center;
+  margin-top: 48rpx;
+}
+
+.modal-cancel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 96rpx;
+  margin-right: 24rpx;
+  border: 1rpx solid var(--color-border);
+  border-radius: 48rpx;
+  background-color: var(--color-bg-card);
+}
+
+.modal-cancel:active {
+  opacity: 0.8;
+}
+
+.modal-cancel-text {
+  font-size: 28rpx;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.modal-confirm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 96rpx;
+  background: var(--gradient-primary);
+  border-radius: 48rpx;
+}
+
+.modal-confirm:active {
+  opacity: 0.9;
+}
+
+.modal-confirm-text {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--color-text-white);
+  white-space: nowrap;
+}
+
+/* ---------- 状态占位 ---------- */
+.state-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.state-text {
+  font-size: 28rpx;
+  color: var(--color-text-tertiary);
+}

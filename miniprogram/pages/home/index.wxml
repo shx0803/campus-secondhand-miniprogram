@@ -1,0 +1,94 @@
+<view class="page">
+  <!-- 顶部头部 -->
+  <view class="header">
+    <!-- 店铺招牌：店长 邵鹤轩 -->
+    <view class="shop-banner">
+      <image class="shop-logo" src="https://picsum.photos/id/64/200/200" mode="aspectFill" />
+      <view class="shop-info">
+        <view class="shop-title-row">
+          <text class="shop-name">邵鹤轩的小店</text>
+          <text class="shop-badge">店长</text>
+        </view>
+        <text class="shop-slogan">校园闲置 · 让每件好物遇到对的人</text>
+      </view>
+    </view>
+
+    <view class="location-row">
+      <text class="location-icon">📍</text>
+      <text class="location">东校区</text>
+      <text class="slogan">让闲置流动起来</text>
+    </view>
+    <search-bar readonly="{{true}}" placeholder="搜索你想买的闲置好物" bind:enterpress="onSearchTap" />
+  </view>
+
+  <!-- 排序栏 -->
+  <view class="filter-bar">
+    <view class="filter-item" data-key="all" bindtap="onCategoryTap">
+      <text class="filter-text {{isCategoryFiltered ? 'active' : ''}}">{{activeCategoryLabel}}</text>
+    </view>
+
+    <view
+      class="filter-item"
+      wx:for="{{sortTabs}}"
+      wx:key="key"
+      data-key="{{item.key}}"
+      bindtap="onSortTap"
+    >
+      <text class="filter-text {{sort === item.key ? 'active' : ''}}">{{item.label}}</text>
+    </view>
+
+    <view class="filter-item" bindtap="onPriceSort">
+      <text class="filter-text {{isPriceActive ? 'active' : ''}}">价格</text>
+      <text wx:if="{{isPriceActive}}" class="arrow">{{priceArrow}}</text>
+    </view>
+
+    <text class="count">共 {{total}} 件</text>
+  </view>
+
+  <!-- 内容滚动区 -->
+  <scroll-view
+    scroll-y="{{true}}"
+    class="scroll"
+    refresher-enabled="{{true}}"
+    refresher-triggered="{{refreshing}}"
+    bindrefresherrefresh="onRefresh"
+    bindscrolltolower="onLoadMore"
+    lower-threshold="60"
+    enhanced="{{true}}"
+    show-scrollbar="{{false}}"
+  >
+    <!-- 分类快捷入口 -->
+    <view class="category-card">
+      <view
+        class="category-item"
+        wx:for="{{categories}}"
+        wx:key="key"
+        data-key="{{item.key}}"
+        bindtap="onCategoryTap"
+      >
+        <view class="category-icon" style="background-color: {{item.color}}">
+          <text>{{item.emoji}}</text>
+        </view>
+        <text class="category-label">{{item.label}}</text>
+      </view>
+    </view>
+
+    <!-- 商品双列瀑布流 -->
+    <view wx:if="{{list.length > 0}}" class="grid">
+      <view class="grid-item" wx:for="{{list}}" wx:key="_id">
+        <product-card product="{{item}}" layout="grid" bind:select="onCardTap" />
+      </view>
+    </view>
+    <empty-state wx:elif="{{!loading}}" icon="🔍" text="没有找到相关闲置，换个分类看看" />
+
+    <!-- 底部加载状态 -->
+    <view wx:if="{{list.length > 0}}" class="load-more">
+      <text class="load-more-text">{{loading ? '加载中…' : (hasMore ? '上拉加载更多' : '— 已经到底啦 —')}}</text>
+    </view>
+
+    <!-- 页脚品牌水印 -->
+    <view class="brand-footer">
+      <text class="brand-footer-text">— 邵鹤轩 · 校园二手市场 —</text>
+    </view>
+  </scroll-view>
+</view>

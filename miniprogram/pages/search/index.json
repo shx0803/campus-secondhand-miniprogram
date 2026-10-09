@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "search-bar": "../../components/search-bar/index",
+    "product-card": "../../components/product-card/index",
+    "empty-state": "../../components/empty-state/index"
+  },
+  "navigationBarTitleText": "搜索"
+}

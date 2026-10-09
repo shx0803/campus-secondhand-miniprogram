@@ -1,0 +1,162 @@
+<view class="page">
+  <scroll-view scroll-y="{{true}}" class="scroll" enhanced="{{true}}" show-scrollbar="{{false}}">
+    <!-- 商品图片 -->
+    <view class="section">
+      <text class="section-title">商品图片<text class="required">*</text></text>
+      <view class="image-grid">
+        <view class="image-item" wx:for="{{images}}" wx:key="*this">
+          <image
+            class="image"
+            src="{{item}}"
+            mode="aspectFill"
+            data-index="{{index}}"
+            bindtap="onPreview"
+          />
+          <view class="image-delete" data-index="{{index}}" catchtap="onRemoveImage">
+            <text class="image-delete-text">✕</text>
+          </view>
+        </view>
+
+        <view wx:if="{{images.length < maxImages}}" class="image-add" bindtap="onChooseImage">
+          <text class="image-add-icon">＋</text>
+          <text class="image-add-text">添加图片</text>
+        </view>
+      </view>
+      <text class="tip">第一张会作为封面，最多 {{maxImages}} 张</text>
+    </view>
+
+    <!-- 基础信息 -->
+    <view class="section">
+      <view class="field-row">
+        <text class="label">标题<text class="required">*</text></text>
+        <input
+          class="input"
+          value="{{title}}"
+          maxlength="{{maxTitle}}"
+          placeholder="例如：九成新 iPad Air 4 64G"
+          placeholder-class="input-placeholder"
+          bindinput="onTitleInput"
+        />
+        <text class="counter">{{title.length}}/{{maxTitle}}</text>
+      </view>
+
+      <view class="field-row">
+        <text class="label">售价<text class="required">*</text></text>
+        <view class="price-wrap">
+          <text class="price-symbol">¥</text>
+          <input
+            class="input"
+            type="digit"
+            value="{{price}}"
+            placeholder="0.00"
+            placeholder-class="input-placeholder"
+            bindinput="onPriceInput"
+          />
+        </view>
+      </view>
+
+      <view class="field-row">
+        <text class="label">原价</text>
+        <view class="price-wrap">
+          <text class="price-symbol">¥</text>
+          <input
+            class="input"
+            type="digit"
+            value="{{originalPrice}}"
+            placeholder="选填，展示折扣更有吸引力"
+            placeholder-class="input-placeholder"
+            bindinput="onOriginalPriceInput"
+          />
+        </view>
+      </view>
+
+      <view class="field-row">
+        <text class="label">联系方式</text>
+        <input
+          class="input"
+          value="{{contact}}"
+          maxlength="40"
+          placeholder="微信号 / QQ / 手机号"
+          placeholder-class="input-placeholder"
+          bindinput="onContactInput"
+        />
+      </view>
+    </view>
+
+    <!-- 分类 -->
+    <view class="section">
+      <text class="section-title">分类</text>
+      <view class="tag-wrap">
+        <view
+          class="tag {{category === item.key ? 'tag-active' : ''}}"
+          wx:for="{{categories}}"
+          wx:key="key"
+          data-key="{{item.key}}"
+          bindtap="onCategoryTap"
+        >
+          <text>{{item.emoji}} {{item.label}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 成色 -->
+    <view class="section">
+      <text class="section-title">成色</text>
+      <view class="tag-wrap">
+        <view
+          class="tag {{condition === item ? 'tag-active' : ''}}"
+          wx:for="{{conditions}}"
+          wx:key="*this"
+          data-value="{{item}}"
+          bindtap="onConditionTap"
+        >
+          <text>{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 交易校区 -->
+    <view class="section">
+      <text class="section-title">交易校区</text>
+      <view class="tag-wrap">
+        <view
+          class="tag {{campus === item ? 'tag-active' : ''}}"
+          wx:for="{{campuses}}"
+          wx:key="*this"
+          data-value="{{item}}"
+          bindtap="onCampusTap"
+        >
+          <text>{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 描述 -->
+    <view class="section">
+      <text class="section-title">商品描述</text>
+      <textarea
+        class="textarea"
+        value="{{description}}"
+        maxlength="{{maxDesc}}"
+        placeholder="说说入手时间、使用情况、有无破损，写清楚更容易卖出去～"
+        placeholder-class="textarea-placeholder"
+        bindinput="onDescInput"
+      />
+      <view class="textarea-footer">
+        <text class="counter">{{description.length}}/{{maxDesc}}</text>
+      </view>
+    </view>
+
+    <view class="spacer" />
+  </scroll-view>
+
+  <!-- 底部提交栏 -->
+  <view class="footer">
+    <view class="reset-btn" bindtap="onReset">
+      <text class="reset-text">清空</text>
+    </view>
+    <view class="submit-btn {{submitting ? 'submit-btn-disabled' : ''}}" bindtap="onSubmit">
+      <text class="submit-text">{{submitting ? '发布中…' : '立即发布'}}</text>
+    </view>
+  </view>
+</view>

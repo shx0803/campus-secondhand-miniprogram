@@ -1,0 +1,42 @@
+<view class="page">
+  <!-- 左侧分类导航 -->
+  <scroll-view scroll-y="{{true}}" class="sidebar" enhanced="{{true}}" show-scrollbar="{{false}}">
+    <view
+      class="side-item {{active === item.key ? 'side-item-active' : ''}}"
+      wx:for="{{sideItems}}"
+      wx:key="key"
+      data-key="{{item.key}}"
+      bindtap="onSideTap"
+    >
+      <text>{{item.label}}</text>
+    </view>
+  </scroll-view>
+
+  <!-- 右侧内容区 -->
+  <view class="content">
+    <scroll-view
+      scroll-y="{{true}}"
+      class="scroll"
+      bindscrolltolower="onLoadMore"
+      lower-threshold="60"
+      enhanced="{{true}}"
+      show-scrollbar="{{false}}"
+    >
+      <view class="banner">
+        <text class="banner-title">{{activeDesc}}</text>
+        <text class="banner-desc">共 {{total}} 件闲置物品在售</text>
+      </view>
+
+      <view wx:if="{{list.length > 0}}" class="grid">
+        <view class="grid-item" wx:for="{{list}}" wx:key="_id">
+          <product-card product="{{item}}" layout="grid" bind:select="onCardTap" />
+        </view>
+      </view>
+      <empty-state wx:elif="{{!loading}}" icon="🧺" text="这个分类还没有闲置，来当第一个吧" />
+
+      <view wx:if="{{list.length > 0}}" class="load-more">
+        <text class="load-more-text">{{loading ? '加载中…' : (hasMore ? '上拉加载更多' : '— 已经到底啦 —')}}</text>
+      </view>
+    </scroll-view>
+  </view>
+</view>

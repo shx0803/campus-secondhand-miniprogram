@@ -1,0 +1,116 @@
+<view class="page">
+  <!-- 加载中 -->
+  <view wx:if="{{loading}}" class="state-wrap">
+    <text class="state-text">加载中…</text>
+  </view>
+
+  <!-- 商品不存在 -->
+  <view wx:elif="{{!product}}" class="state-wrap">
+    <empty-state
+      icon="🕳️"
+      text="商品不存在或已被下架"
+      actionText="返回首页"
+      bind:action="goHome"
+    />
+  </view>
+
+  <block wx:else>
+    <scroll-view scroll-y="{{true}}" class="scroll" enhanced="{{true}}" show-scrollbar="{{false}}">
+      <!-- 图片轮播 -->
+      <view class="swiper-wrap">
+        <swiper class="swiper" circular="{{true}}" bindchange="onSwiperChange">
+          <swiper-item wx:for="{{product.images}}" wx:key="*this">
+            <image
+              class="swiper-image"
+              src="{{item}}"
+              mode="aspectFill"
+              data-index="{{index}}"
+              bindtap="onPreview"
+            />
+          </swiper-item>
+        </swiper>
+        <view class="counter">{{current + 1}}/{{product.images.length}}</view>
+      </view>
+
+      <!-- 价格与标题 -->
+      <view class="card">
+        <view class="price-row">
+          <text class="price-symbol">¥</text>
+          <text class="price">{{priceText}}</text>
+          <text wx:if="{{originalPriceText}}" class="original-price">{{originalPriceText}}</text>
+          <text wx:if="{{discount > 0}}" class="discount">{{discount}} 折</text>
+        </view>
+
+        <text class="title">{{product.title}}</text>
+
+        <view class="tag-row">
+          <text class="tag">{{product.condition}}</text>
+          <text class="tag">{{categoryItem.emoji}} {{categoryItem.label}}</text>
+          <text class="tag tag-accent">{{product.campus}} 面交</text>
+        </view>
+
+        <view class="meta-row">
+          <text class="meta-text">{{viewsText}} 人浏览</text>
+          <text class="meta-text meta-gap">{{timeText}}发布</text>
+        </view>
+      </view>
+
+      <!-- 卖家信息 -->
+      <view class="card">
+        <view class="seller-row">
+          <image class="seller-avatar" src="{{product.sellerAvatar}}" mode="aspectFill" />
+          <view class="seller-info">
+            <text class="seller-name">{{product.sellerName}}</text>
+            <text class="seller-meta">认证学生 · 已实名 · 同校交易更放心</text>
+          </view>
+          <text wx:if="{{isSelf}}" class="self-chip">我发布的</text>
+        </view>
+      </view>
+
+      <!-- 商品描述 -->
+      <view class="card">
+        <text class="section-title">商品描述</text>
+        <text class="desc">{{product.description || '卖家没有填写更多描述，可以联系他了解详情～'}}</text>
+        <image
+          class="desc-image"
+          wx:for="{{descImages}}"
+          wx:key="*this"
+          src="{{item}}"
+          mode="widthFix"
+        />
+      </view>
+
+      <view class="spacer" />
+    </scroll-view>
+
+    <!-- 底部操作栏 -->
+    <view class="footer">
+      <view class="fav-btn" bindtap="onToggleFavorite">
+        <text class="fav-icon">{{favorited ? '❤️' : '🤍'}}</text>
+        <text class="fav-label {{favorited ? 'fav-label-active' : ''}}">{{favorited ? '已收藏' : '收藏'}}</text>
+      </view>
+      <view class="contact-btn {{isSelf ? 'contact-btn-disabled' : ''}}" bindtap="onContactTap">
+        <text class="contact-text">{{isSelf ? '这是我的商品' : '联系卖家'}}</text>
+      </view>
+    </view>
+
+    <!-- 联系方式弹窗 -->
+    <view wx:if="{{showContact}}" class="mask" bindtap="onCloseContact">
+      <view class="modal" catchtap="noop">
+        <text class="modal-title">联系方式</text>
+        <text class="modal-desc">复制后去微信 / QQ 找 TA 聊聊吧</text>
+        <view class="contact-box">
+          <text class="contact-value">{{product.contact}}</text>
+        </view>
+        <view class="modal-actions">
+          <view class="modal-cancel" bindtap="onCloseContact">
+            <text class="modal-cancel-text">关闭</text>
+          </view>
+          <view class="modal-confirm" bindtap="onCopyContact">
+            <text class="modal-confirm-text">复制联系方式</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,224 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--color-bg-page);
+}
+
+/* ---------- 顶部头部 ---------- */
+.header {
+  flex-shrink: 0;
+  padding: 24rpx 32rpx 32rpx;
+  background: var(--gradient-header);
+}
+
+/* ---------- 店铺招牌（店长 邵鹤轩） ---------- */
+.shop-banner {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24rpx;
+  padding: 24rpx;
+  border-radius: 20rpx;
+  background-color: var(--color-bg-card);
+  box-shadow: var(--shadow-card);
+}
+
+.shop-logo {
+  flex-shrink: 0;
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 999rpx;
+  border: 3rpx solid var(--color-primary-bg);
+  background-color: var(--color-bg-hover);
+}
+
+.shop-info {
+  flex: 1;
+  min-width: 0;
+  margin-left: 20rpx;
+}
+
+.shop-title-row {
+  display: flex;
+  align-items: center;
+}
+
+.shop-name {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.shop-badge {
+  margin-left: 12rpx;
+  height: 34rpx;
+  line-height: 34rpx;
+  padding: 0 12rpx;
+  border-radius: 6rpx;
+  font-size: 20rpx;
+  color: var(--color-text-white);
+  background: var(--gradient-primary);
+}
+
+.shop-slogan {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: var(--color-text-tertiary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.location-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.location-icon {
+  font-size: 24rpx;
+}
+
+.location {
+  margin-left: 8rpx;
+  font-size: 24rpx;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.slogan {
+  margin-left: auto;
+  font-size: 22rpx;
+  color: var(--color-text-tertiary);
+}
+
+/* ---------- 排序栏 ---------- */
+.filter-bar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  height: 88rpx;
+  padding: 0 32rpx;
+  background-color: var(--color-bg-card);
+  border-bottom: 1rpx solid var(--color-divider);
+}
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  margin-right: 48rpx;
+}
+
+.filter-item:active {
+  opacity: 0.7;
+}
+
+.filter-text {
+  font-size: 28rpx;
+  color: var(--color-text-secondary);
+}
+
+.filter-text.active {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.arrow {
+  margin-left: 4rpx;
+  font-size: 22rpx;
+  color: var(--color-primary);
+}
+
+.count {
+  margin-left: auto;
+  font-size: 22rpx;
+  color: var(--color-text-tertiary);
+}
+
+/* ---------- 滚动区 ---------- */
+.scroll {
+  flex: 1;
+  min-height: 0;
+  height: 0;
+}
+
+/* ---------- 分类快捷入口 ---------- */
+.category-card {
+  margin: 24rpx 32rpx 0;
+  padding: 32rpx 24rpx 8rpx;
+  background-color: var(--color-bg-card);
+  border-radius: 16rpx;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.category-item {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.category-item:active {
+  opacity: 0.75;
+}
+
+.category-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 999rpx;
+  font-size: 40rpx;
+}
+
+.category-label {
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+/* ---------- 商品瀑布流 ---------- */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 24rpx 32rpx 0;
+}
+
+.grid-item {
+  width: 332rpx;
+  margin-bottom: 24rpx;
+}
+
+/* ---------- 底部加载状态 ---------- */
+.load-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32rpx 0 48rpx;
+}
+
+.load-more-text {
+  font-size: 24rpx;
+  color: var(--color-text-tertiary);
+}
+
+/* ---------- 页脚品牌水印 ---------- */
+.brand-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 40rpx;
+}
+
+.brand-footer-text {
+  font-size: 22rpx;
+  color: var(--color-text-disabled);
+  letter-spacing: 1rpx;
+}

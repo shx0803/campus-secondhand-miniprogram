@@ -1,0 +1,62 @@
+/* ============================================
+ * 全局样式 / 设计变量
+ * 品牌色：#ff6b35（活力橙）
+ * ============================================ */
+
+page {
+  --color-primary: #ff6b35;
+  --color-primary-light: #ff8b5e;
+  --color-primary-dark: #e5541f;
+  --color-primary-bg: #fff3ee;
+  --color-accent: #2bb3a3;
+  --color-accent-bg: #e8f7f5;
+  --color-bg-page: #f6f7fb;
+  --color-bg-card: #ffffff;
+  --color-bg-hover: #f2f3f5;
+  --color-text-primary: #1d2129;
+  --color-text-secondary: #4e5969;
+  --color-text-tertiary: #86909c;
+  --color-text-disabled: #c9cdd4;
+  --color-text-white: #ffffff;
+  --color-border: #e9ecf0;
+  --color-divider: #f2f4f7;
+  --color-price: #ff4d2e;
+  --color-tag-bg: #fff3ee;
+  --color-tag-text: #ff6b35;
+  --gradient-primary: linear-gradient(135deg, #ff8b5e 0%, #ff6b35 100%);
+  --gradient-header: linear-gradient(180deg, #ffe9e0 0%, #f6f7fb 100%);
+  --shadow-card: 0 2rpx 12rpx rgba(0, 0, 0, 0.08);
+  --shadow-float: 0 4rpx 16rpx rgba(0, 0, 0, 0.1);
+
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB',
+    sans-serif;
+  font-size: 28rpx;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-page);
+}
+
+view,
+scroll-view,
+swiper,
+swiper-item,
+text,
+image,
+button,
+input,
+textarea,
+form,
+label,
+navigator {
+  box-sizing: border-box;
+}
+
+/* 通用多行省略 */
+.ellipsis-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  word-break: break-all;
+}

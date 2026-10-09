@@ -1,0 +1,21 @@
+<view class="search-bar theme-{{theme}}" bindtap="onTap">
+  <text class="icon">🔍</text>
+
+  <text wx:if="{{readonly}}" class="placeholder">{{placeholder}}</text>
+
+  <input
+    wx:else
+    class="input"
+    value="{{value}}"
+    focus="{{focus}}"
+    placeholder="{{placeholder}}"
+    placeholder-class="placeholder-input"
+    confirm-type="search"
+    bindinput="onInput"
+    bindconfirm="onConfirm"
+  />
+
+  <view wx:if="{{!readonly && value}}" class="clear" catchtap="onClear">
+    <text class="clear-text">✕</text>
+  </view>
+</view>

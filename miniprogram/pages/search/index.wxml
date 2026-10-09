@@ -1,0 +1,87 @@
+<view class="page">
+  <!-- 顶部搜索条 -->
+  <view class="header">
+    <view class="header-search">
+      <search-bar
+        value="{{keyword}}"
+        focus="{{true}}"
+        theme="gray"
+        placeholder="搜索你想买的闲置好物"
+        bind:valuechange="onInput"
+        bind:searchconfirm="onConfirm"
+      />
+    </view>
+    <text class="cancel" bindtap="goBack">取消</text>
+  </view>
+
+  <scroll-view
+    scroll-y="{{true}}"
+    class="scroll"
+    bindscrolltolower="onLoadMore"
+    lower-threshold="60"
+    enhanced="{{true}}"
+    show-scrollbar="{{false}}"
+  >
+    <!-- 未搜索：历史 + 热门 -->
+    <block wx:if="{{!showResult}}">
+      <view wx:if="{{history.length > 0}}" class="tag-section">
+        <view class="section-head">
+          <text class="section-title">搜索历史</text>
+          <text class="clear-history" bindtap="onClearHistory">清空</text>
+        </view>
+        <view class="tag-wrap">
+          <view
+            class="tag"
+            wx:for="{{history}}"
+            wx:key="*this"
+            data-value="{{item}}"
+            bindtap="onTagTap"
+          >
+            <text>{{item}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="tag-section">
+        <view class="section-head">
+          <text class="section-title">大家都在搜</text>
+        </view>
+        <view class="tag-wrap">
+          <view
+            class="tag tag-primary"
+            wx:for="{{hotKeywords}}"
+            wx:key="*this"
+            data-value="{{item}}"
+            bindtap="onTagTap"
+          >
+            <text>{{item}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- 已搜索：结果列表 -->
+    <block wx:else>
+      <view class="result-head">
+        <text class="result-title">搜索结果</text>
+        <text class="result-count">共 {{total}} 件</text>
+      </view>
+
+      <view wx:if="{{loading && list.length === 0}}" class="loading">
+        <text class="loading-text">搜索中…</text>
+      </view>
+
+      <view wx:elif="{{list.length > 0}}" class="list">
+        <view class="list-item" wx:for="{{list}}" wx:key="_id">
+          <product-card product="{{item}}" layout="list" bind:select="onCardTap" />
+        </view>
+      </view>
+
+      <empty-state wx:elif="{{!loading}}" icon="🔍" text="没有找到「{{submittedKeyword}}」相关的闲置" />
+
+      <view wx:if="{{list.length > 0}}" class="footer">
+        <text class="footer-text">{{loading ? '加载中…' : (hasMore ? '上拉加载更多' : '— 已经到底啦 —')}}</text>
+      </view>
+    </block>
+  </scroll-view>
+</view>

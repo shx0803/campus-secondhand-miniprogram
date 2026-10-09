@@ -1,0 +1,89 @@
+<view class="page">
+  <!-- 用户信息卡 -->
+  <view class="profile">
+    <view class="profile-top">
+      <image
+        class="avatar"
+        src="{{user.avatar || 'https://picsum.photos/id/64/200/200'}}"
+        mode="aspectFill"
+      />
+      <view class="profile-info">
+        <text class="nickname">{{user.nickname || '邵鹤轩'}}</text>
+        <view class="profile-meta">
+          <text class="meta-chip">信用分 {{user.creditScore || '--'}}</text>
+          <text class="meta-chip">{{user.campus || '东校区'}}</text>
+          <text class="meta-chip">店长</text>
+        </view>
+        <text class="signature">邵鹤轩 · 让每件闲置都有归宿</text>
+      </view>
+    </view>
+
+    <view class="stats">
+      <view class="stat-item">
+        <text class="stat-value">{{myProducts.length}}</text>
+        <text class="stat-label">我发布的</text>
+      </view>
+      <view class="stat-divider" />
+      <view class="stat-item">
+        <text class="stat-value">{{favorites.length}}</text>
+        <text class="stat-label">我收藏的</text>
+      </view>
+      <view class="stat-divider" />
+      <view class="stat-item">
+        <text class="stat-value">{{totalViews}}</text>
+        <text class="stat-label">总浏览</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Tab 切换 -->
+  <view class="tab-bar">
+    <view
+      class="tab-item"
+      wx:for="{{tabs}}"
+      wx:key="key"
+      data-key="{{item.key}}"
+      bindtap="onTabTap"
+    >
+      <text class="tab-text {{activeTab === item.key ? 'tab-text-active' : ''}}">{{item.label}}</text>
+      <view wx:if="{{activeTab === item.key}}" class="tab-indicator" />
+    </view>
+  </view>
+
+  <scroll-view scroll-y="{{true}}" class="scroll" enhanced="{{true}}" show-scrollbar="{{false}}">
+    <view wx:if="{{loading && currentList.length === 0}}" class="loading">
+      <text class="loading-text">加载中…</text>
+    </view>
+
+    <view wx:elif="{{currentList.length > 0}}" class="list">
+      <view class="list-item" wx:for="{{currentList}}" wx:key="_id">
+        <product-card product="{{item}}" layout="list" bind:select="onCardTap" />
+      </view>
+    </view>
+
+    <empty-state
+      wx:elif="{{activeTab === 'published'}}"
+      icon="📦"
+      text="你还没有发布过闲置"
+      actionText="去发布一件"
+      bind:action="onEmptyAction"
+    />
+
+    <empty-state
+      wx:else
+      icon="🤍"
+      text="还没有收藏任何闲置"
+      actionText="去逛逛"
+      bind:action="onEmptyAction"
+    />
+
+    <view wx:if="{{currentList.length > 0}}" class="tip-bar">
+      <text class="tip-text">— 共 {{currentList.length}} 件 —</text>
+    </view>
+
+    <!-- 页脚品牌水印 -->
+    <view class="brand-footer">
+      <text class="brand-footer-text">— 邵鹤轩的闲置小铺 —</text>
+    </view>
+  </scroll-view>
+</view>
